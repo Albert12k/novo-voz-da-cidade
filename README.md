@@ -9,8 +9,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Voz da Cidade',
+      debugShowCheckedModeBanner: false, // Remove a faixa de debug no canto
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: LoginPage(),
     );
@@ -25,9 +27,9 @@ class LoginPage extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF004675), Colors.white],
+            colors: const [const Color(0xFF004675), Colors.white], // Added const to the list
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -39,13 +41,13 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Logo / Ícone
-                Icon(
+                const Icon(
                   Icons.location_city,
                   size: 90,
                   color: Colors.white,
                 ),
-                SizedBox(height: 16),
-                Text(
+                const SizedBox(height: 16),
+                const Text(
                   "Voz da Cidade",
                   style: TextStyle(
                     fontSize: 28,
@@ -53,42 +55,42 @@ class LoginPage extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
 
                 // Campo Email
-                TextField(
-                  decoration: InputDecoration(
+                const TextField(
+                  decoration: const InputDecoration( // Added const here
                     filled: true,
                     fillColor: Colors.white,
-                    prefixIcon: Icon(Icons.email, color: Color(0xFF004675)),
+                    prefixIcon: const Icon(Icons.email, color: const Color(0xFF004675)), // Added const to Icon and Color
                     labelText: 'Email',
-                    labelStyle: TextStyle(color: Color(0xFF004675)),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
+                    labelStyle: const TextStyle(color: const Color(0xFF004675)), // Added const to TextStyle and Color
+                    border: const OutlineInputBorder( // Added const here
+                      borderRadius: const BorderRadius.all(Radius.circular(30.0)), // Fixed: Made BorderRadius const
                     ),
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
 
                 // Campo Senha
-                TextField(
+                const TextField(
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration( // Added const here
                     filled: true,
                     fillColor: Colors.white,
-                    prefixIcon: Icon(Icons.lock, color: Color(0xFF004675)),
+                    prefixIcon: const Icon(Icons.lock, color: const Color(0xFF004675)), // Added const to Icon and Color
                     labelText: 'Senha',
-                    labelStyle: TextStyle(color: Color(0xFF004675)),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
+                    labelStyle: const TextStyle(color: const Color(0xFF004675)), // Added const to TextStyle and Color
+                    border: const OutlineInputBorder( // Added const here
+                      borderRadius: const BorderRadius.all(Radius.circular(30.0)), // Fixed: Made BorderRadius const
                     ),
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                   ),
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
 
                 // Botão Login
                 SizedBox(
@@ -103,21 +105,21 @@ class LoginPage extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
-                      foregroundColor: Color(0xFF004675),
+                      foregroundColor: const Color(0xFF004675),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 16),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
                       elevation: 4,
                     ),
-                    child: Text(
+                    child: const Text(
                       'ENTRAR',
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
 
                 // Links
                 Row(
@@ -131,7 +133,7 @@ class LoginPage extends StatelessWidget {
                               builder: (BuildContext context) => CadastroPage()),
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         'Cadastrar',
                         style: TextStyle(color: Colors.white),
                       ),
@@ -144,7 +146,7 @@ class LoginPage extends StatelessWidget {
                               builder: (BuildContext context) => EsqueciSenhaPage()),
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         'Esqueci a Senha',
                         style: TextStyle(color: Colors.white),
                       ),
@@ -183,7 +185,7 @@ class _CadastroPageState extends State<CadastroPage> {
     if (value == null || value.trim().isEmpty) {
       return 'Por favor, insira seu email';
     }
-    final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+    final RegExp emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
     if (!emailRegex.hasMatch(value)) {
       return 'Email inválido';
     }
@@ -221,9 +223,9 @@ class _CadastroPageState extends State<CadastroPage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF004675), Colors.white],
+            colors: const [const Color(0xFF004675), Colors.white], // Added const to the list
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -236,10 +238,9 @@ class _CadastroPageState extends State<CadastroPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Título
-                  Icon(Icons.person_add, size: 80, color: Colors.white),
-                  SizedBox(height: 16),
-                  Text(
+                  const Icon(Icons.person_add, size: 80, color: Colors.white),
+                  const SizedBox(height: 16),
+                  const Text(
                     "Criar Conta",
                     style: TextStyle(
                       fontSize: 26,
@@ -247,65 +248,65 @@ class _CadastroPageState extends State<CadastroPage> {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 32),
+                  const SizedBox(height: 32),
 
                   // Campo Nome
                   TextFormField(
                     controller: _nomeController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration( // Added const here
                       filled: true,
                       fillColor: Colors.white,
-                      prefixIcon: Icon(Icons.person, color: Color(0xFF004675)),
+                      prefixIcon: const Icon(Icons.person, color: const Color(0xFF004675)), // Added const to Color
                       labelText: 'Nome',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
+                      border: const OutlineInputBorder( // Added const here
+                        borderRadius: const BorderRadius.all(Radius.circular(30.0)), // Fixed: Made BorderRadius const
                       ),
                       contentPadding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                          const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                     ),
                     validator: _validateNome,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
                   // Campo Email
                   TextFormField(
                     controller: _emailController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration( // Added const here
                       filled: true,
                       fillColor: Colors.white,
-                      prefixIcon: Icon(Icons.email, color: Color(0xFF004675)),
+                      prefixIcon: const Icon(Icons.email, color: const Color(0xFF004675)), // Added const to Color
                       labelText: 'Email',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
+                      border: const OutlineInputBorder( // Added const here
+                        borderRadius: const BorderRadius.all(Radius.circular(30.0)), // Fixed: Made BorderRadius const
                       ),
                       contentPadding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                          const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                     ),
                     validator: _validateEmail,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
                   // Campo Senha
                   TextFormField(
                     controller: _senhaController,
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration( // Added const here
                       filled: true,
                       fillColor: Colors.white,
-                      prefixIcon: Icon(Icons.lock, color: Color(0xFF004675)),
+                      prefixIcon: const Icon(Icons.lock, color: const Color(0xFF004675)), // Added const to Color
                       labelText: 'Senha',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
+                      border: const OutlineInputBorder( // Added const here
+                        borderRadius: const BorderRadius.all(Radius.circular(30.0)), // Fixed: Made BorderRadius const
                       ),
                       contentPadding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                          const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                     ),
                     validator: _validateSenha,
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
 
                   // Dica da senha
-                  Row(
+                  const Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Icon(Icons.info, size: 16, color: Colors.white),
@@ -320,7 +321,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     ],
                   ),
 
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
 
                   // Botão Cadastrar
                   SizedBox(
@@ -329,14 +330,14 @@ class _CadastroPageState extends State<CadastroPage> {
                       onPressed: _cadastrar,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
-                        foregroundColor: Color(0xFF004675),
+                        foregroundColor: const Color(0xFF004675),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        padding: EdgeInsets.symmetric(vertical: 16),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
                         elevation: 4,
                       ),
-                      child: Text(
+                      child: const Text(
                         'CADASTRAR',
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold),
@@ -344,14 +345,14 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                   ),
 
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
                   // Link para voltar ao login
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context); // volta para o login
                     },
-                    child: Text(
+                    child: const Text(
                       "Já tem conta? Entrar",
                       style: TextStyle(
                         color: Colors.white,
@@ -385,7 +386,7 @@ class _EsqueciSenhaPageState extends State<EsqueciSenhaPage> {
     if (value == null || value.trim().isEmpty) {
       return 'Por favor, insira seu email';
     }
-    final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+    final RegExp emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
     if (!emailRegex.hasMatch(value)) {
       return 'Email inválido';
     }
@@ -393,7 +394,7 @@ class _EsqueciSenhaPageState extends State<EsqueciSenhaPage> {
   }
 
   void _onEmailChanged() {
-    final isValid = _validateEmail(_emailController.text) == null;
+    final bool isValid = _validateEmail(_emailController.text) == null;
     if (isValid != _isEmailValido) {
       setState(() {
         _isEmailValido = isValid;
@@ -404,7 +405,7 @@ class _EsqueciSenhaPageState extends State<EsqueciSenhaPage> {
   void _enviarEmail() {
     if (_formKey.currentState!.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Email de recuperação enviado!')),
+        const SnackBar(content: Text('Email de recuperação enviado!')),
       );
       Navigator.pop(context);
     }
@@ -429,9 +430,9 @@ class _EsqueciSenhaPageState extends State<EsqueciSenhaPage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF004675), Colors.white],
+            colors: const [const Color(0xFF004675), Colors.white], // Added const to the list
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -444,9 +445,9 @@ class _EsqueciSenhaPageState extends State<EsqueciSenhaPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.lock_reset, size: 80, color: Colors.white),
-                  SizedBox(height: 16),
-                  Text(
+                  const Icon(Icons.lock_reset, size: 80, color: Colors.white),
+                  const SizedBox(height: 16),
+                  const Text(
                     "Recuperar Senha",
                     style: TextStyle(
                       fontSize: 26,
@@ -454,27 +455,27 @@ class _EsqueciSenhaPageState extends State<EsqueciSenhaPage> {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 32),
+                  const SizedBox(height: 32),
 
                   // Campo Email
                   TextFormField(
                     controller: _emailController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration( // Added const here
                       filled: true,
                       fillColor: Colors.white,
-                      prefixIcon: Icon(Icons.email, color: Color(0xFF004675)),
+                      prefixIcon: const Icon(Icons.email, color: const Color(0xFF004675)), // Added const to Color
                       labelText: 'Email',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
+                      border: const OutlineInputBorder( // Added const here
+                        borderRadius: const BorderRadius.all(Radius.circular(30.0)), // Fixed: Made BorderRadius const
                       ),
                       contentPadding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                          const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                     ),
                     validator: _validateEmail,
                     keyboardType: TextInputType.emailAddress,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
 
                   // Botão Enviar
                   SizedBox(
@@ -483,14 +484,14 @@ class _EsqueciSenhaPageState extends State<EsqueciSenhaPage> {
                       onPressed: _isEmailValido ? _enviarEmail : null,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
-                        foregroundColor: Color(0xFF004675),
-                        padding: EdgeInsets.symmetric(vertical: 16),
+                        foregroundColor: const Color(0xFF004675),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
                         elevation: 4,
                       ),
-                      child: Text(
+                      child: const Text(
                         'ENVIAR',
                         style: TextStyle(
                           fontSize: 16,
@@ -500,14 +501,14 @@ class _EsqueciSenhaPageState extends State<EsqueciSenhaPage> {
                     ),
                   ),
 
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
                   // Link voltar ao login
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text(
+                    child: const Text(
                       "Voltar para o Login",
                       style: TextStyle(
                         color: Colors.white,
@@ -569,7 +570,7 @@ class AppPrincipalPage extends StatefulWidget {
 
 class _AppPrincipalPageState extends State<AppPrincipalPage> {
   int _selectedIndex = 0;
-  List<Ocorrencia> _ocorrencias = <Ocorrencia>[
+  final List<Ocorrencia> _ocorrencias = <Ocorrencia>[
     Ocorrencia(
       titulo: 'Buraco na rua',
       descricao: 'Há um buraco na rua principal.',
@@ -600,14 +601,14 @@ class _AppPrincipalPageState extends State<AppPrincipalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Voz da Cidade'),
-        backgroundColor: Color(0xFF004675),
+        title: const Text('Voz da Cidade'),
+        backgroundColor: const Color(0xFF004675),
         foregroundColor: Colors.white,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF004675), Colors.white],
+            colors: const [const Color(0xFF004675), Colors.white], // Added const to the list
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -617,13 +618,13 @@ class _AppPrincipalPageState extends State<AppPrincipalPage> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-          boxShadow: <BoxShadow>[BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 1)],
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+          boxShadow: const <BoxShadow>[BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 1)], // Added const to the list
         ),
         child: BottomNavigationBar(
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
-          selectedItemColor: Color(0xFF004675),
+          selectedItemColor: const Color(0xFF004675),
           unselectedItemColor: Colors.grey,
           showUnselectedLabels: true,
           items: const <BottomNavigationBarItem>[
@@ -644,7 +645,7 @@ class _AppPrincipalPageState extends State<AppPrincipalPage> {
       case 0:
         return HomePageContent();
       case 1:
-        return EventosPageContent();
+        return const EventosPageContent();
       case 2:
         return NovaOcorrenciaPage(
           onOcorrenciaEnviada: (Ocorrencia ocorrencia) {
@@ -654,19 +655,11 @@ class _AppPrincipalPageState extends State<AppPrincipalPage> {
           },
         );
       case 3:
-        return MuralComunidade();
+        return const MuralComunidade();
       case 4:
         return VisualizarOcorrenciasPage(ocorrencias: _ocorrencias);
       case 5:
-        return PerfilUsuarioPage(
-          nome: 'Nome do Usuário',
-          email: 'email@exemplo.com',
-          onSalvar: (String nome, String email) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Perfil de $nome atualizado para $email!')),
-            );
-          },
-        );
+        return const PerfilUsuarioContentPage(); // Usando a versão mais rica do perfil
       default:
         return HomePageContent();
     }
@@ -686,28 +679,28 @@ class HomePageContent extends StatelessWidget {
             'Notícias da Cidade',
             'Fique por dentro das últimas notícias e eventos.',
             Icons.article,
-            () => Navigator.push<void>(context, MaterialPageRoute<void>(builder: (_) => NoticiasPage())),
+            () => Navigator.push<void>(context, MaterialPageRoute<void>(builder: (_) => const NoticiasPage())),
           ),
           _buildCard(
             context,
             'Eventos',
             'Veja os próximos eventos na cidade.',
             Icons.event,
-            () => Navigator.push<void>(context, MaterialPageRoute<void>(builder: (_) => EventosPageContent())),
+            () => Navigator.push<void>(context, MaterialPageRoute<void>(builder: (_) => const EventosPageContent())),
           ),
           _buildCard(
             context,
             'Dicas de Segurança',
             'Dicas para manter sua segurança e bem-estar.',
             Icons.security,
-            () => Navigator.push<void>(context, MaterialPageRoute<void>(builder: (_) => DicasSegurancaPage())),
+            () => Navigator.push<void>(context, MaterialPageRoute<void>(builder: (_) => const DicasSegurancaPage())),
           ),
           _buildCard(
             context,
             'Serviços Públicos',
             'Informações sobre serviços disponíveis na cidade.',
             Icons.public,
-            () => Navigator.push<void>(context, MaterialPageRoute<void>(builder: (_) => ServicosPublicosPage())),
+            () => Navigator.push<void>(context, MaterialPageRoute<void>(builder: (_) => const ServicosPublicosPage())),
           ),
         ],
       ),
@@ -716,14 +709,14 @@ class HomePageContent extends StatelessWidget {
 
   Widget _buildCard(BuildContext context, String title, String subtitle, IconData icon, VoidCallback onTap) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 8),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       elevation: 4,
       child: ListTile(
-        leading: Icon(icon, color: Color(0xFF004675)),
-        title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+        leading: Icon(icon, color: const Color(0xFF004675)),
+        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Text(subtitle),
-        trailing: Icon(Icons.arrow_forward),
+        trailing: const Icon(Icons.arrow_forward),
         onTap: onTap,
       ),
     );
@@ -756,20 +749,20 @@ class EventosPageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Eventos da Cidade'),
-        backgroundColor: Color(0xFF004675),
+        title: const Text('Eventos da Cidade'),
+        backgroundColor: const Color(0xFF004675),
         foregroundColor: Colors.white,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF004675), Colors.white],
+            colors: const [const Color(0xFF004675), Colors.white], // Added const to the list
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
         child: ListView.builder(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           itemCount: eventos.length,
           itemBuilder: (BuildContext context, int index) {
             final Map<String, String> evento = eventos[index];
@@ -778,21 +771,21 @@ class EventosPageContent extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
               elevation: 4,
-              margin: EdgeInsets.symmetric(vertical: 8),
+              margin: const EdgeInsets.symmetric(vertical: 8),
               child: ListTile(
-                contentPadding: EdgeInsets.all(16),
-                leading: Icon(Icons.event, color: Color(0xFF004675), size: 36),
-                title: Text(evento['titulo']!, style: TextStyle(fontWeight: FontWeight.bold)),
+                contentPadding: const EdgeInsets.all(16),
+                leading: const Icon(Icons.event, color: Color(0xFF004675), size: 36),
+                title: Text(evento['titulo']!, style: const TextStyle(fontWeight: FontWeight.bold)),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(evento['descricao']!),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text('Data: ${evento['data']!}', style: TextStyle(fontSize: 12, color: Colors.grey[700])),
                   ],
                 ),
-                trailing: Icon(Icons.arrow_forward),
+                trailing: const Icon(Icons.arrow_forward),
                 onTap: () {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('Mais informações sobre "${evento['titulo']!}"')),
@@ -811,7 +804,7 @@ class EventosPageContent extends StatelessWidget {
 class NovaOcorrenciaPage extends StatefulWidget {
   final Function(Ocorrencia) onOcorrenciaEnviada;
 
-  NovaOcorrenciaPage({Key? key, required this.onOcorrenciaEnviada}) : super(key: key);
+  const NovaOcorrenciaPage({Key? key, required this.onOcorrenciaEnviada}) : super(key: key);
 
   @override
   _NovaOcorrenciaPageState createState() => _NovaOcorrenciaPageState();
@@ -838,7 +831,7 @@ class _NovaOcorrenciaPageState extends State<NovaOcorrenciaPage> {
       );
       widget.onOcorrenciaEnviada(newOcorrencia);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Ocorrência enviada com sucesso!')),
+        const SnackBar(content: Text('Ocorrência enviada com sucesso!')),
       );
       // Volta para a tela principal
       Navigator.pop(context);
@@ -856,10 +849,10 @@ class _NovaOcorrenciaPageState extends State<NovaOcorrenciaPage> {
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
-        prefixIcon: Icon(icon, color: Color(0xFF004675)),
+        prefixIcon: Icon(icon, color: const Color(0xFF004675)),
         labelText: label,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
+        border: const OutlineInputBorder( // Added const here
+          borderRadius: const BorderRadius.all(Radius.circular(16.0)), // Fixed: Made BorderRadius const
         ),
       ),
       maxLines: maxLines,
@@ -872,20 +865,20 @@ class _NovaOcorrenciaPageState extends State<NovaOcorrenciaPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Nova Ocorrência'),
-        backgroundColor: Color(0xFF004675),
+        title: const Text('Nova Ocorrência'),
+        backgroundColor: const Color(0xFF004675),
         foregroundColor: Colors.white,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF004675), Colors.white],
+            colors: const [const Color(0xFF004675), Colors.white], // Added const to the list
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Form(
             key: _formKey,
             child: Column(
@@ -896,7 +889,7 @@ class _NovaOcorrenciaPageState extends State<NovaOcorrenciaPage> {
                   onSaved: (String? value) => _titulo = value,
                   validator: (String? value) => value!.isEmpty ? 'Insira um título' : null,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 _buildTextField(
                   label: 'Descrição',
                   icon: Icons.description,
@@ -904,35 +897,35 @@ class _NovaOcorrenciaPageState extends State<NovaOcorrenciaPage> {
                   onSaved: (String? value) => _descricao = value,
                   validator: (String? value) => value!.isEmpty ? 'Insira uma descrição' : null,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 _buildTextField(
                   label: 'Categoria',
                   icon: Icons.category,
                   onSaved: (String? value) => _categoria = value,
                   validator: (String? value) => value!.isEmpty ? 'Insira uma categoria' : null,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 _buildTextField(
                   label: 'Localização',
                   icon: Icons.location_on,
                   onSaved: (String? value) => _localizacao = value,
                   validator: (String? value) => value!.isEmpty ? 'Insira uma localização' : null,
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: _enviarOcorrencia,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
-                      foregroundColor: Color(0xFF004675),
-                      padding: EdgeInsets.symmetric(vertical: 16),
+                      foregroundColor: const Color(0xFF004675),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
                       elevation: 4,
                     ),
-                    child: Text(
+                    child: const Text(
                       'ENVIAR OCORRÊNCIA',
                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
@@ -952,8 +945,8 @@ class DicasSegurancaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Dicas de Segurança'), backgroundColor: Color(0xFF004675), foregroundColor: Colors.white),
-      body: Center(child: Text('Conteúdo das Dicas de Segurança')),
+      appBar: AppBar(title: const Text('Dicas de Segurança'), backgroundColor: const Color(0xFF004675), foregroundColor: Colors.white),
+      body: const Center(child: Text('Conteúdo das Dicas de Segurança')),
     );
   }
 }
@@ -963,8 +956,8 @@ class ServicosPublicosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Serviços Públicos'), backgroundColor: Color(0xFF004675), foregroundColor: Colors.white),
-      body: Center(child: Text('Conteúdo dos Serviços Públicos')),
+      appBar: AppBar(title: const Text('Serviços Públicos'), backgroundColor: const Color(0xFF004675), foregroundColor: Colors.white),
+      body: const Center(child: Text('Conteúdo dos Serviços Públicos')),
     );
   }
 }
@@ -974,8 +967,8 @@ class NoticiasPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Notícias da Cidade'), backgroundColor: Color(0xFF004675), foregroundColor: Colors.white),
-      body: Center(child: Text('Conteúdo das Notícias')),
+      appBar: AppBar(title: const Text('Notícias da Cidade'), backgroundColor: const Color(0xFF004675), foregroundColor: Colors.white),
+      body: const Center(child: Text('Conteúdo das Notícias')),
     );
   }
 }
@@ -989,18 +982,18 @@ class VisualizarOcorrenciasPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Minhas Ocorrências'),
-        backgroundColor: Color(0xFF004675),
+        title: const Text('Minhas Ocorrências'),
+        backgroundColor: const Color(0xFF004675),
         foregroundColor: Colors.white,
       ),
       body: ocorrencias.isEmpty
-          ? Center(child: Text('Nenhuma ocorrência registrada.'))
+          ? const Center(child: Text('Nenhuma ocorrência registrada.'))
           : ListView.builder(
               itemCount: ocorrencias.length,
               itemBuilder: (BuildContext context, int index) {
                 final Ocorrencia ocorrencia = ocorrencias[index];
                 return Card(
-                  margin: EdgeInsets.all(8),
+                  margin: const EdgeInsets.all(8),
                   child: ListTile(
                     title: Text(ocorrencia.titulo),
                     subtitle: Text('${ocorrencia.descricao} - ${ocorrencia.status}'),
@@ -1008,72 +1001,6 @@ class VisualizarOcorrenciasPage extends StatelessWidget {
                 );
               },
             ),
-    );
-  }
-}
-
-class PerfilUsuarioPage extends StatefulWidget {
-  final String nome;
-  final String email;
-  final Function(String, String) onSalvar;
-
-  PerfilUsuarioPage({Key? key, required this.nome, required this.email, required this.onSalvar}) : super(key: key);
-
-  @override
-  _PerfilUsuarioPageState createState() => _PerfilUsuarioPageState();
-}
-
-class _PerfilUsuarioPageState extends State<PerfilUsuarioPage> {
-  late TextEditingController _nomeController;
-  late TextEditingController _emailController;
-
-  @override
-  void initState() {
-    super.initState();
-    _nomeController = TextEditingController(text: widget.nome);
-    _emailController = TextEditingController(text: widget.email);
-  }
-
-  @override
-  void dispose() {
-    _nomeController.dispose();
-    _emailController.dispose();
-    super.dispose();
-  }
-
-  void _salvar() {
-    widget.onSalvar(_nomeController.text, _emailController.text);
-    Navigator.pop(context); //volta para a tela anterior
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Perfil do Usuário'),
-        backgroundColor: Color(0xFF004675),
-        foregroundColor: Colors.white,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[
-            TextField(
-              controller: _nomeController,
-              decoration: InputDecoration(labelText: 'Nome'),
-            ),
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _salvar,
-              child: Text('Salvar Alterações'),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
@@ -1130,7 +1057,7 @@ class _MuralComunidadeState extends State<MuralComunidade> {
 
   void _addPost() {
     if (_postTextController.text.isNotEmpty) {
-      final newPost = PostComunidade(
+      final PostComunidade newPost = PostComunidade(
         titulo: 'Nova Publicação', // Você pode expandir para que o usuário defina o título
         conteudo: _postTextController.text,
         autor: 'Usuário Atual', // Substitua por dados do usuário logado
@@ -1150,10 +1077,10 @@ class _MuralComunidadeState extends State<MuralComunidade> {
   }
 
   void _showCommentsModal(int index) {
-    final post = _posts[index];
+    final PostComunidade post = _posts[index];
     final TextEditingController commentController = TextEditingController();
 
-    showModalBottomSheet(
+    showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
@@ -1163,7 +1090,7 @@ class _MuralComunidadeState extends State<MuralComunidade> {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: [
+            children: <Widget>[
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(16.0),
@@ -1185,7 +1112,7 @@ class _MuralComunidadeState extends State<MuralComunidade> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: post.comentarios.length,
-                  itemBuilder: (context, commentIndex) {
+                  itemBuilder: (BuildContext context, int commentIndex) {
                     return ListTile(
                       title: Text(post.comentarios[commentIndex]),
                       // Adicione mais detalhes aqui, como nome do autor do comentário, etc.
@@ -1196,7 +1123,7 @@ class _MuralComunidadeState extends State<MuralComunidade> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  children: [
+                  children: <Widget>[
                     Expanded(
                       child: TextField(
                         controller: commentController,
@@ -1245,19 +1172,19 @@ class _MuralComunidadeState extends State<MuralComunidade> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF004675), Colors.white],
+            colors: const [const Color(0xFF004675), Colors.white], // Added const to the list
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
         child: Column(
-          children: [
+          children: <Widget>[
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.all(16),
                 itemCount: _posts.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final post = _posts[index];
+                  final PostComunidade post = _posts[index];
                   final DateTime postDate = DateTime.fromMillisecondsSinceEpoch(post.timestamp * 1000);
                   return Card(
                     shape: RoundedRectangleBorder(
@@ -1269,7 +1196,7 @@ class _MuralComunidadeState extends State<MuralComunidade> {
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: <Widget>[
                           Text(
                             post.titulo,
                             style: const TextStyle(
@@ -1285,7 +1212,7 @@ class _MuralComunidadeState extends State<MuralComunidade> {
                           ),
                           const SizedBox(height: 12),
                           Row(
-                            children: [
+                            children: <Widget>[
                               const Icon(Icons.person, size: 16, color: Colors.grey),
                               const SizedBox(width: 4),
                               Text(
@@ -1304,11 +1231,11 @@ class _MuralComunidadeState extends State<MuralComunidade> {
                           const Divider(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
+                            children: <Widget>[
                               GestureDetector(
                                 onTap: () => _toggleLike(index),
                                 child: Row(
-                                  children: [
+                                  children: <Widget>[
                                     Icon(Icons.thumb_up, color: post.likes > 0 ? Colors.blue : Colors.grey),
                                     const SizedBox(width: 4),
                                     Text('${post.likes}'),
@@ -1318,7 +1245,7 @@ class _MuralComunidadeState extends State<MuralComunidade> {
                               GestureDetector(
                                 onTap: () => _showCommentsModal(index),
                                 child: Row(
-                                  children: [
+                                  children: <Widget>[
                                     const Icon(Icons.comment, color: Colors.grey),
                                     const SizedBox(width: 4),
                                     Text('${post.comentarios.length}'),
@@ -1338,7 +1265,7 @@ class _MuralComunidadeState extends State<MuralComunidade> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
-                children: [
+                children: <Widget>[
                   Expanded(
                     child: TextField(
                       controller: _postTextController,
@@ -1362,6 +1289,364 @@ class _MuralComunidadeState extends State<MuralComunidade> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+// Classe de Dados para o Usuário (simplificada para este exemplo)
+// Esta classe representa as informações do usuário.
+class Usuario {
+  String nome;
+  String email;
+
+  Usuario({required this.nome, required this.email});
+
+  // Método para atualizar o usuário
+  void update({String? newNome, String? newEmail}) {
+    if (newNome != null) nome = newNome;
+    if (newEmail != null) email = newEmail;
+  }
+}
+
+// A Tela de Perfil de Usuário Simples e Autocontida
+class PerfilUsuarioContentPage extends StatefulWidget {
+  const PerfilUsuarioContentPage({Key? key}) : super(key: key);
+
+  @override
+  _PerfilUsuarioContentPageState createState() => _PerfilUsuarioContentPageState();
+}
+
+class _PerfilUsuarioContentPageState extends State<PerfilUsuarioContentPage> {
+  // Estado interno do usuário para esta tela
+  // Inicialização direta do objeto Usuario, resolvendo o LateInitializationError
+  final Usuario _currentUser =
+      Usuario(nome: 'Nome do Usuário', email: 'email@exemplo.com');
+
+  final _formKey = GlobalKey<FormState>();
+  late TextEditingController _nomeController;
+  late TextEditingController _emailController;
+  bool _isEditing = false; // Controla se a tela está em modo de edição
+
+  @override
+  void initState() {
+    super.initState();
+    // Inicializa os controladores de texto com os dados atuais do usuário
+    _nomeController = TextEditingController(text: _currentUser.nome);
+    _emailController = TextEditingController(text: _currentUser.email);
+  }
+
+  @override
+  void dispose() {
+    // É importante descartar os controladores para liberar recursos
+    _nomeController.dispose();
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  // Função para salvar as alterações do perfil
+  void _salvarAlteracoes() {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _currentUser.update(
+          newNome: _nomeController.text,
+          newEmail: _emailController.text,
+        );
+        _isEditing = false; // Sai do modo de edição após salvar
+      });
+      // Exibe uma mensagem de sucesso
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Perfil atualizado com sucesso!')),
+      );
+    }
+  }
+
+  // Função para cancelar o modo de edição e reverter para os dados originais
+  void _cancelarEdicao() {
+    setState(() {
+      _isEditing = false;
+      // Reseta os controladores para os valores que estavam antes da edição
+      _nomeController.text = _currentUser.nome;
+      _emailController.text = _currentUser.email;
+    });
+  }
+
+  // Função de exemplo para Mudar Senha
+  void _mudarSenha() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Funcionalidade de mudar senha (ainda não implementada)')),
+    );
+    // Em um app real, você navegaria para uma tela de mudança de senha aqui.
+  }
+
+  // Função de exemplo para Configurações
+  void _abrirConfiguracoes() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Funcionalidade de configurações (ainda não implementada)')),
+    );
+    // Em um app real, você navegaria para uma tela de configurações aqui.
+  }
+
+  // Função para lidar com o logout
+  void _handleLogout() {
+    // Mostra um diálogo de confirmação antes de sair
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Sair da Conta?'),
+        content: const Text('Você tem certeza que deseja fazer logout?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context), // Fecha o diálogo
+            child: const Text('Cancelar'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context); // Fecha o diálogo
+              // Aqui você implementaria a lógica de logout, como limpar tokens e navegar para a tela de login.
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Você fez logout.')),
+              );
+              // Exemplo de navegação para uma tela de login (simulada)
+              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()));
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            child: const Text('Sair', style: TextStyle(color: Colors.white)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Meu Perfil'),
+        backgroundColor: const Color(0xFF004675), // Azul escuro
+        foregroundColor: Colors.white, // Cor do texto e ícones
+        elevation: 0, // Remove a sombra da AppBar
+        actions: <Widget>[
+          // Botão Editar aparece quando NÃO estamos editando
+          if (!_isEditing)
+            IconButton(
+              icon: const Icon(Icons.edit, color: Colors.white),
+              onPressed: () {
+                setState(() {
+                  _isEditing = true; // Entra no modo de edição
+                });
+              },
+            ),
+          // Botões Cancelar e Salvar aparecem quando estamos editando
+          if (_isEditing) ...<Widget>[
+            IconButton(
+              icon: const Icon(Icons.cancel, color: Colors.white),
+              onPressed: _cancelarEdicao,
+            ),
+            IconButton(
+              icon: const Icon(Icons.check, color: Colors.white),
+              onPressed: _salvarAlteracoes,
+            ),
+          ],
+        ],
+      ),
+      body: Container(
+        // Gradiente de fundo que vai do azul escuro para o branco
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: const [const Color(0xFF004675), Colors.white], // Added const to the list
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20.0), // Padding geral
+          child: Form(
+            key: _formKey, // Chave para o formulário para validação
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center, // Centraliza os elementos
+              children: <Widget>[
+                const SizedBox(height: 20),
+                // Avatar do Usuário
+                const CircleAvatar(
+                  radius: 60, // Tamanho do avatar
+                  backgroundColor: Colors.white, // Fundo branco
+                  child: Icon(
+                    Icons.person,
+                    size: 80,
+                    color: Color(0xFF004675), // Ícone azul
+                  ),
+                ),
+                const SizedBox(height: 20),
+                // Nome do Usuário (sempre visível no cabeçalho)
+                Text(
+                  _currentUser.nome,
+                  style: const TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white, // Texto branco para contraste
+                  ),
+                ),
+                const SizedBox(height: 8),
+                // Email do Usuário (sempre visível no cabeçalho)
+                Text(
+                  _currentUser.email,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.white70, // Texto branco mais suave
+                  ),
+                ),
+                const SizedBox(height: 40),
+
+                // Campo de entrada para o Nome
+                _buildProfileInputField(
+                  label: 'Nome Completo',
+                  icon: Icons.person,
+                  controller: _nomeController,
+                  isEditable: _isEditing,
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, insira seu nome';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 20),
+                // Campo de entrada para o Email
+                _buildProfileInputField(
+                  label: 'Endereço de Email',
+                  icon: Icons.email,
+                  controller: _emailController,
+                  isEditable: _isEditing,
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, insira seu email';
+                    }
+                    if (!value.contains('@')) {
+                      return 'Email inválido';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 30),
+
+                // Opções adicionais do perfil (Mudar Senha e Configurações)
+                _buildListTileOption(
+                  icon: Icons.lock,
+                  title: 'Mudar Senha',
+                  onTap: _mudarSenha,
+                ),
+                const SizedBox(height: 10), // Espaçamento entre as opções
+                _buildListTileOption(
+                  icon: Icons.settings,
+                  title: 'Configurações',
+                  onTap: _abrirConfiguracoes,
+                ),
+                const SizedBox(height: 40),
+
+                // Botão de Sair da Conta
+                TextButton.icon(
+                  onPressed: _handleLogout,
+                  icon: const Icon(Icons.logout, color: Colors.red, size: 24),
+                  label: const Text(
+                    'Sair da Conta',
+                    style: TextStyle(color: Colors.red, fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      side: const BorderSide(color: Colors.red, width: 1.5), // Borda vermelha
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Widget auxiliar para construir os campos de entrada do perfil (Nome/Email)
+  Widget _buildProfileInputField({
+    required String label,
+    required IconData icon, // Parameter icon is used now
+    required TextEditingController controller,
+    required bool isEditable,
+    String? Function(String?)? validator,
+  }) {
+    return TextFormField(
+      controller: controller,
+      readOnly: !isEditable, // Torna o campo somente leitura se não estiver editando
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(
+            color: isEditable ? const Color(0xFF004675) : Colors.grey[700]),
+        filled: true,
+        fillColor: Colors.white.withAlpha((255 * 0.95).round()), // Fundo quase opaco
+        border: const OutlineInputBorder( // Added const here
+          borderRadius: const BorderRadius.all(Radius.circular(15.0)), // Fixed: Made BorderRadius const
+          borderSide: BorderSide.none,
+        ),
+        prefixIcon: Icon(icon, color: const Color(0xFF004675)), // Used 'icon' parameter and added const to Color
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: BorderSide(
+            color: const Color(0xFF004675).withAlpha((255 * 0.6).round()),
+            width: 1.5,
+          ),
+        ),
+        focusedBorder: const OutlineInputBorder( // Added const here
+          borderRadius: const BorderRadius.all(Radius.circular(15.0)), // Fixed: Made BorderRadius const
+          borderSide: const BorderSide( // Added const here
+            color: const Color(0xFF004675), // Added const here
+            width: 2.5,
+          ),
+        ),
+      ),
+      style: TextStyle(
+        color: isEditable ? Colors.black87 : Colors.grey[800],
+        fontSize: 17,
+        fontWeight: isEditable ? FontWeight.normal : FontWeight.w600, // Mais negrito quando não editável
+      ),
+      validator: validator,
+    );
+  }
+
+  // Widget auxiliar para construir as opções de lista (Mudar Senha, Configurações)
+  Widget _buildListTileOption({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white.withAlpha((255 * 0.95).round()), // Fundo quase opaco
+        borderRadius: BorderRadius.circular(15), // Cantos arredondados
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black.withAlpha((255 * 0.05).round()),
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, 3), // Sombra suave
+          ),
+        ],
+      ),
+      child: ListTile(
+        leading: Icon(icon, color: const Color(0xFF004675), size: 28),
+        title: Text(
+          title,
+          style: const TextStyle(
+            color: Color(0xFF004675),
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        trailing: const Icon(Icons.arrow_forward_ios, color: Colors.grey, size: 20),
+        onTap: onTap,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       ),
     );
   }
