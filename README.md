@@ -984,7 +984,7 @@ class _NovaOcorrenciaPageState extends State<NovaOcorrenciaPage> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: _enviarOcorrencia,
+                    onPressed: _enviarOcorrencia, // Corrected method name
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: const Color(0xFF004675),
@@ -1006,20 +1006,6 @@ class _NovaOcorrenciaPageState extends State<NovaOcorrenciaPage> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class ServicosPublicosPage extends StatelessWidget {
-  const ServicosPublicosPage({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: const Text('Serviços Públicos'),
-          backgroundColor: const Color(0xFF004675),
-          foregroundColor: Colors.white),
-      body: const Center(child: Text('Conteúdo dos Serviços Públicos')),
     );
   }
 }
@@ -1742,6 +1728,196 @@ class DicaSegurancaItem extends StatelessWidget {
                 ),
                 // maxLines: 4, // Remova ou ajuste se quiser mostrar a descrição completa
                 // overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// Modelo de Dados para Serviço Público
+class ServicoPublico {
+  final String titulo;
+  final String descricao;
+  final IconData icone;
+  final String? linkExterno; // Opcional: link para um portal externo
+  // final String? rotaInterna; // Opcional: para navegar para uma tela interna
+
+  const ServicoPublico({ // Changed to const constructor
+    required this.titulo,
+    required this.descricao,
+    required this.icone,
+    this.linkExterno,
+    // this.rotaInterna,
+  });
+}
+
+// 2. Tela de Serviços Públicos
+class ServicosPublicosPage extends StatelessWidget {
+  const ServicosPublicosPage({super.key}); // Changed to const constructor
+
+  // Lista de serviços públicos simulados
+  final List<ServicoPublico> servicos = const [ // Added const to the list
+    ServicoPublico( // Added const
+      titulo: 'Agendamento de Consultas',
+      descricao: 'Agende consultas médicas e exames em unidades de saúde da rede pública.',
+      icone: Icons.medical_services_outlined,
+      linkExterno: 'https://saude.exemplo.com.br',
+    ),
+    ServicoPublico( // Added const
+      titulo: 'Matrícula Escolar',
+      descricao: 'Realize a matrícula ou transferência de alunos para escolas municipais.',
+      icone: Icons.school_outlined,
+      linkExterno: 'https://educacao.exemplo.com.br',
+    ),
+    ServicoPublico( // Added const
+      titulo: 'Coleta de Lixo',
+      descricao: 'Informações sobre os dias e horários da coleta de lixo e reciclagem em seu bairro.',
+      icone: Icons.delete_outline,
+    ),
+    ServicoPublico( // Added const
+      titulo: 'Iluminação Pública',
+      descricao: 'Solicite manutenção ou informe problemas na iluminação de ruas e praças.',
+      icone: Icons.lightbulb_outline,
+    ),
+    ServicoPublico( // Added const
+      titulo: 'IPTU e Taxas',
+      descricao: 'Consulte seu IPTU, emita guias de pagamento e acesse outros serviços fiscais.',
+      icone: Icons.receipt_long_outlined,
+      linkExterno: 'https://iptu.exemplo.com.br',
+    ),
+    ServicoPublico( // Added const
+      titulo: 'Cursos e Oficinas',
+      descricao: 'Conheça e inscreva-se em cursos profissionalizantes e oficinas culturais gratuitas.',
+      icone: Icons.menu_book_outlined,
+    ),
+    ServicoPublico( // Added const
+      titulo: 'Transporte Público',
+      descricao: 'Consulte linhas, horários e rotas de ônibus municipais.',
+      icone: Icons.directions_bus_outlined,
+    ),
+    ServicoPublico( // Added const
+      titulo: 'Defesa Civil',
+      descricao: 'Informações e alertas sobre emergências, desastres naturais e planos de prevenção.',
+      icone: Icons.warning_amber_outlined,
+    ),
+    ServicoPublico( // Added const
+      titulo: 'Zoonoses',
+      descricao: 'Serviços de controle de zoonoses, vacinação e castração de animais.',
+      icone: Icons.pets_outlined,
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Serviços Públicos'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF004675), Colors.white],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: GridView.builder(
+          padding: const EdgeInsets.all(16.0), // Padding em toda a grade
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, // 2 itens por linha
+            crossAxisSpacing: 16.0, // Espaçamento horizontal entre os itens
+            mainAxisSpacing: 16.0, // Espaçamento vertical entre os itens
+            childAspectRatio: 0.9, // Ajuste a proporção para caber bem o conteúdo
+          ),
+          itemCount: servicos.length,
+          itemBuilder: (context, index) {
+            final servico = servicos[index];
+            return ServicoItemGrid(servico: servico);
+          },
+        ),
+      ),
+    );
+  }
+}
+
+// 3. Widget Customizado para Exibir Cada Serviço na Grade
+class ServicoItemGrid extends StatelessWidget {
+  final ServicoPublico servico;
+
+  const ServicoItemGrid({super.key, required this.servico}); // Changed to super.key
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white.withAlpha(242), // Fundo quase branco (0.95 * 255 = 242.25 -> 242)
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withAlpha(20), // Changed withOpacity to withAlpha (0.08 * 255 = 20.4 -> 20)
+            spreadRadius: 1,
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: InkWell(
+        onTap: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Você clicou em "${servico.titulo}"')),
+          );
+          // Em um app real, você poderia:
+          // if (servico.linkExterno != null) {
+          //   launchUrl(Uri.parse(servico.linkExterno!)); // Usar url_launcher
+          // } else if (servico.rotaInterna != null) {
+          //   Navigator.pushNamed(context, servico.rotaInterna!);
+          // } else {
+          //   showDialog(context: context, builder: (ctx) => AlertDialog(title: Text(servico.titulo), content: Text(servico.descricao)));
+          // }
+        },
+        borderRadius: BorderRadius.circular(15),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center, // Centraliza verticalmente
+            crossAxisAlignment: CrossAxisAlignment.center, // Centraliza horizontalmente
+            children: [
+              Icon(
+                servico.icone,
+                color: Theme.of(context).primaryColor,
+                size: 50, // Ícone maior
+              ),
+              const SizedBox(height: 10), // Espaçamento
+              Text(
+                servico.titulo,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 5), // Espaçamento
+              Text(
+                servico.descricao,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey,
+                ),
+                maxLines: 2, // Limita a descrição a 2 linhas
+                overflow: TextOverflow.ellipsis,
               ),
             ],
           ),
